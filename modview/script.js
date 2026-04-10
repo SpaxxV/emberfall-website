@@ -8,7 +8,7 @@ if (!localStorage.getItem("key")) {
         key: localStorage.getItem("key"),
     }, (res) => {
         if (!res.success) {
-            window.location.replace("https://www.emberfallevents.com/modview/login/?" + params.toString());
+            // window.location.replace("https://www.emberfallevents.com/modview/login/?" + params.toString());
         } else {
             downloadModviewJS();
         }
