@@ -7,8 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="../../style.css"/>
-    <link rel="stylesheet" href="../styleMod.css"/>
-    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" sizes="128x128">
     <title>Emberfall Modview</title>
   </head>
   <body>
@@ -27,6 +26,12 @@
       <div class="login-section-inner">
         <div class="login-card">
           <h3 class="login-title">Modview Login</h3>
+          <span id="error"></span>
+          <div class="login-card-bottom">
+            <input class="input fullwidth" id="username" placeholder="Username">
+            <input class="input fullwidth" id="password" placeholder="Password" type="password">
+            <button class="btn-primary submitButton fullwidth" onclick="login();">Login</button>
+          </div>
         </div>
       </div>
     </section>
@@ -45,18 +50,18 @@
           <div class="footer-col">
             <h4>Navigate</h4>
             <ul class="footer-links">
-              <li><a href="https://www.emberfallevents.com/#events">Events</a></li>
-              <li><a href="https://www.emberfallevents.com/#about">About Us</a></li>
-              <!-- <li><a href="https://www.emberfallevents.com/#support">Support Us</a></li> -->
-              <li><a href="https://www.emberfallevents.com/#staff">Staff</a></li>
+              <li><a href="https://emberfallevents.com/#events">Events</a></li>
+              <li><a href="https://emberfallevents.com/#about">About Us</a></li>
+              <li><a href="https://emberfallevents.com/#support">Support Us</a></li>
+              <li><a href="https://emberfallevents.com/#staff">Staff</a></li>
               <li><a href="https://discord.gg/emberfallevents" target="_blank">Discord</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>Follow Us</h4>
             <ul class="footer-links">
-              <li><a href="https://www.youtube.com/@EmberfallEvents" target="_blank">YouTube</a></li>
-              <!-- <li><a href="" target="_blank">Ko-fi</a></li> -->
+              <li><a href="https://youtube.com/@EmberfallEvents" target="_blank">YouTube</a></li>
+              <li><a href="https://ko-fi.com/V7V01WVVBT" target="_blank">Ko-fi</a></li>
               <li><a href="" style="opacity:0.4;">Twitter (Coming soon)</a></li>
               <li><a href="" style="opacity:0.4;">TikTok (Coming soon)</a></li>
               <li><a href="" style="opacity:0.4;">Instagram (Coming soon)</a></li>
