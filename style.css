@@ -3,6 +3,7 @@
 ───────────────────────────────────────────── */
 :root {
     --bg:        #0e0e0e;
+    --mid:   #121212;
     --surface:   #161616;
     --surface2:  #1e1e1e;
     --border:    rgba(255,255,255,0.07);
@@ -28,6 +29,11 @@ body {
 
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
+
+textarea {
+    resize: none;
+    overflow: auto;
+}
 
 .orange-text {
     color: var(--orange);
@@ -181,9 +187,11 @@ a { text-decoration: none; color: inherit; }
 }
 
 .landing-title {
-    width: 70%;
-    border-radius: 1rem;
-    backdrop-filter: blur(1px);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.05em;
+    color: var(--white);
     filter: drop-shadow(0px 0px 40px #000);
 }
 
@@ -342,6 +350,17 @@ section {
     border-color: rgba(255,255,255,0.3);
     color: var(--white);
     transform: translateY(-2px);
+}
+
+.input {
+    background: rgba(244,100,10,0.12);
+    border: 1px solid rgba(244,100,10,0.3);
+    font-family: "DM Sans", sans-serif;
+    color: var(--white);
+    font-size: 0.8rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .discord-card {
@@ -795,15 +814,21 @@ section {
 .footer-bottom span { color: var(--orange); }
 
 .section-style-1 {
-    padding: 100px 0;
+    padding: 75px 0;
     background: var(--bg);
 }
 
 .section-style-2 {
-    padding: 100px 0;
+    padding: 75px 0;
     background: var(--surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+}
+
+.section-inner-2 {
+    margin: 0 75px;
+    width: auto;
+    height: auto;
 }
 
 .progress-bar {
@@ -821,6 +846,62 @@ section {
     background-size: 100% 500%;
     animation: progress-bar-gradient 5s infinite;
 }
+
+.login-card {
+    display: flex;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    height: auto;
+    margin: -2rem 0;
+    flex-direction: column;
+}
+.login-card-bottom {
+    width: 100%;
+    flex-direction: row;
+    align-self: flex-end;
+}
+.login-title {
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    padding-bottom: 10px;
+}
+.login-section-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+}
+.fullwidth {
+    width: 100%;
+}
+.submitButton {
+    margin-bottom: 10px;
+}
+#error {
+    font-family: "Syne", sans-serif;
+    color: red;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 90px;
+}
+.listingm {
+    width: 100%;
+    height: 75px;
+    display: inline-flex;
+    background: var(--mid);
+    border-bottom: 2px solid;
+    border-color: var(--surface);
+    flex-direction: row;
+}
+
 @keyframes progress-bar-gradient {
     0% { background-position: 50% 100%; }
     100% { background-position: 50% 0%; }
