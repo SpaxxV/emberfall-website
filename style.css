@@ -901,6 +901,31 @@ section {
     border-color: var(--surface);
     flex-direction: row;
 }
+#overlay-popup {
+    position: fixed;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(14, 14, 14, 0.7);
+    z-index: 10;
+}
+#popup-content {
+    padding: 1.8rem 1.8rem;
+    opacity: 1;
+    margin: auto auto;
+    width: 500px;
+    height: 300px;
+    background-color: var(--surface);
+    border-radius: 5px;
+    border: 2px solid;
+    border-color: var(--surface2);
+    display: inline-flex;
+    flex-direction: column;
+}
 
 @keyframes progress-bar-gradient {
     0% { background-position: 50% 100%; }
