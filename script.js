@@ -3,7 +3,6 @@ bgLrg.src = "./images/bg_" + Math.floor(Math.random() * 3) + ".png";
 bgLrg.onload = () => {bgLrg.hidden = false};
 
 const navbar = document.getElementById("navbar");
-const progressBar = document.getElementById("progressBar");
 
 const landingContent = document.getElementById("landingContent");
 
@@ -54,7 +53,7 @@ function toggleAbout() {
     btn.childNodes[0].textContent = isOpen ? "Read Less " : "Read More ";
 }
 
-const carouselImages = ["./images/events/lfevent.png", "./images/events/vevent.png", "./images/events/pevent.png"];
+const carouselImages = ["./images/events/twevent.png", "./images/events/lfevent.png", "./images/events/vevent.png", "./images/events/pevent.png"];
 let carouselIndex = 0;
 
 setInterval(() => {
@@ -75,10 +74,8 @@ setInterval(() => {
 }, 5000);
 
 externalGetRequest("https://discord.com/api/v10/invites/emberfallevents?with_counts=true&with_expiration=true", (res) => {
-    const json = JSON.parse(res);
-    console.log(json)
-    if (json.approximate_member_count) {
-        document.getElementById("online-count").innerHTML = json.approximate_presence_count + " Online";
-        document.getElementById("member-count").innerHTML = json.approximate_member_count + " Members";
+    if (res.approximate_member_count) {
+        document.getElementById("online-count").innerHTML = res.approximate_presence_count + " Online";
+        document.getElementById("member-count").innerHTML = res.approximate_member_count + " Members";
     }
 })
