@@ -352,6 +352,13 @@ section {
     transform: translateY(-2px);
 }
 
+.btn-ghost:hover:disabled {
+    border-color: var(--border);
+    cursor: not-allowed;
+    color: var(--text);
+    transform: translateY(0px);
+}
+
 .input {
     background: rgba(244,100,10,0.12);
     border: 1px solid rgba(244,100,10,0.3);
@@ -901,6 +908,17 @@ section {
     border-color: var(--surface);
     flex-direction: row;
 }
+.listinga {
+    width: 400px;
+    min-width: 400px;
+    height: 300px;
+    display: block;
+    margin: 25px 25px;
+    background: var(--surface);
+    border: 2px solid;
+    border-color: var(--surface2);
+    border-radius: 10px;
+}
 #overlay-popup {
     position: fixed;
     visibility: hidden;
@@ -926,15 +944,98 @@ section {
     display: inline-flex;
     flex-direction: column;
 }
+.event-listing {
+    display: flex;
+    justify-content: center;
+
+}
+.event-listing-inner {
+    max-width: 1350px;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.listing-bg {
+    width: 396px;
+    height: 296px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.listing-overlay {
+    background: linear-gradient(to bottom, rgba(14, 14, 14, 0) 0%, rgba(14, 14, 14, 0) 20%, var(--surface) 50%, var(--surface) 100%);
+    pointer-events: none;
+    position: absolute;
+    border-radius: 10px;
+    width: 400px;
+    height: 300px;
+    top: -2px;
+    left: -2px;
+}
+.listing-icon {
+    background-color: var(--orange);
+    border-radius: 10px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 120px;
+    left: 8px;
+}
+.listing-title {
+    position: absolute;
+    color: var(--white);
+    font-family: "Bebas Neue", sans-serif;
+    filter: drop-shadow(0px 0px 40px #000);
+    font-size: 2.6rem;
+    width: 380px;
+    height: 40px;
+    top: 115px;
+    left: 58px;
+}
+.listing-stats {
+    position: absolute;
+    color: var(--white);
+    font-size: 0.7rem;
+    width: 380px;
+    height: 40px;
+    top: 165px;
+    left: 8px;
+}
+.listing-description {
+    position: absolute;
+    color: var(--muted);
+    font-size: 0.5rem;
+    width: 380px;
+    height: 55px;
+    top: 180px;
+    left: 8px;
+}
+.listing-button {
+    justify-content: center;
+    position: absolute;
+    top: 240px;
+    left: 8px;
+    width: 380px;
+    height: 50px;
+}
 
 @keyframes progress-bar-gradient {
     0% { background-position: 50% 100%; }
     100% { background-position: 50% 0%; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 975px) {
     .apply-grid, .about-layout { grid-template-columns: 1fr; }
     .about-visual, .about-visual-2, .about-visual-3, .about-visual-4, .discord-card, .about-accent, .nav-r  { display: none; }
     .footer-top { grid-template-columns: 1fr; gap: 2rem; }
     .staff-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .event-listing-inner { max-width: 450px; }
+}
+
+@media (max-width: 1425px) and (min-width: 975px)  {
+    .event-listing-inner { max-width: 900px; }
 }
