@@ -258,7 +258,7 @@ section {
     transform: translate(0);
 }
 
-.apply-section {
+.landing-apply-section {
     padding: 130px 0;
     background: var(--bg);
 }
