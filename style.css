@@ -963,6 +963,7 @@ section {
     overflow: hidden;
     border-radius: 10px;
     position: absolute;
+    background-color: var(--orange-dim);
     top: 0px;
     left: 0px;
 }
@@ -1021,6 +1022,52 @@ section {
     left: 8px;
     width: 380px;
     height: 50px;
+}
+.apply {
+    display: flex;
+    justify-content: center;
+}
+.apply-inner {
+    margin-left: 25px;
+    margin-right: 25px;
+    max-width: 1350px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.apply-section {
+    margin-top: 25px;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+.apply-title {
+    width: 100%;
+    display: flex;
+    color: var(--white);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3rem;
+}
+.apply-desc {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    color: var(--white);
+    font-size: 1rem;
+}
+.apply-short {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 0.4rem 0.8rem; 
+}
+.apply-long {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 0.4rem 0.8rem; 
 }
 
 @keyframes progress-bar-gradient {

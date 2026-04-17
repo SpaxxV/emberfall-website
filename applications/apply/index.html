@@ -6,15 +6,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../style.css?r=7"/>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico?r=7" sizes="128x128">
-    <title>Emberfall Events - Applications</title>
+    <link rel="stylesheet" href="../../style.css?r=7"/>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" sizes="128x128">
+    <title>Emberfall Events - Apply</title>
   </head>
   <body>
     <nav class="navbar" id="navbar">
       <a href="#" class="nav-logo">
         <div class="nav-logo-mark">
-          <img src="../images/logo.png" alt="" style="width:32px; height:25px; margin-top:4px;"/>
+          <img src="../../images/logo.png" alt="" style="width:32px; height:25px; margin-top:4px;"/>
         </div>
         EMBERFALL
       </a>
@@ -33,11 +33,11 @@
       </div>
       <div class="landing-overlay"></div>
       <div class="landing-content" id="landingContent">
-        <h1 class="landing-title">APPLICATIONS</h1>
+        <h1 class="landing-title" id="title"></h1>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;text-shadow:none;">
-          <a href="https://discord.com/oauth2/authorize?client_id=1493641488431710238&response_type=code&redirect_uri=https%3A%2F%2Femberfallevents.com%2Fapplications%2F&scope=identify+guilds.members.read" target="_blank" class="btn-primary" id="login">
-            Sign in with Discord
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 0L9 1L11.2929 3.29289L6.2929 8.29289L7.70711 9.70711L12.7071 4.7071L15 7L16 6V0H10Z" fill="#f0ece6"/><path d="M1 2H6V4H3V13H12V10H14V15H1V2Z" fill="#f0ece6"/></svg>
+          <a href="#app" class="btn-primary">
+            Get Started
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           </a>
         </div>
       </div>
@@ -46,18 +46,26 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
     </section>
-    <section class="section-style-1" id="events">
-      <div class="event-listing"> 
-        <div class="event-listing-inner" id="eventlist" style="visibility: hidden;"></div>
-      </div>
+
+    <section class="section-style-1" id="app">
+        <div class="apply">
+            <div class="apply-inner" id="questionContainer" style="visibility: hidden;">
+                <div class="apply-section">
+                    <h4 class="apply-title">What is your Minecraft username?</h4>
+                    <p class="apply-desc">You must have a paid Minecraft: Java Edition account to apply.</p>
+                    <input type="text" id="ign" class="input apply-short" placeholder="Minecraft IGN..." onchange="checkMCName()"></input>
+                    <span style="position: relative; top: -10px;" id="error"></span>
+                </div>
+            </div>
+        </div>
     </section>
-    
+
     <footer class="footer" id="footer">
       <div class="footer-inner">
         <div class="footer-top">
           <div>
             <div class="footer-brand-name">
-              <img src="../images/logo_ext.png" style="width:250px; margin: -20px;">
+              <img src="../../images/logo_ext.png" style="width:250px; margin: -20px;">
             </div>
             <p class="footer-tagline">Emberfall Events:<br>Immersive. Creative. Unforgettable.</p>
             <a href="#">Privacy Policy</a>
@@ -91,6 +99,6 @@
     </footer>
   </body>
 
-  <script src="../global/network.js?r=7"></script>
+  <script src="../../global/network.js?r=7"></script>
   <script src="script.js?r=7"></script>
 </html>
