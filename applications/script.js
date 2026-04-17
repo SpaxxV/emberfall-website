@@ -95,7 +95,7 @@ async function loadEvents() {
                                     <img src="` + res.data.logo + `" alt="" style="width: 40px; height: 32px; margin-top: 5px; visibility: ` + ((res.data.background43 == "") ? "hidden" : "visible") + `;"/>
                                 </div>
                                 <h4 class="listing-title">` + res.data.name + `</h4>
-                                <p class="listing-stats">` + new Date(res.data.closetime).toLocaleString() + ` | ` + res.data.total + ` Applications</p>
+                                <p class="listing-stats">` + new Date(res.data.closetime).toLocaleString() + ` | ` + res.data.total + ` Application` + ((res.data.total != 1) ? "s" : "") + `</p>
                                 <p class="listing-description">` + res.data.description + `</p>
                                 <button class="`+ ((closed) ? "btn-ghost" : "btn-primary") + ` listing-button" ` + ((closed) ? "disabled" : "onclick=\"applyForEvent('" + eid + "')\"") + `>
                                     ` + ((closed) ? "Applications Closed" : "Apply Now!") + `
