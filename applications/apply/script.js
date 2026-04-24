@@ -1,6 +1,6 @@
 const bgLrg = document.getElementById("landingBgIMG");
-bgLrg.src = "../../images/bg_" + Math.floor(Math.random() * 3) + ".png";
-bgLrg.onload = () => {bgLrg.hidden = false};
+setTimeout(() => {bgLrg.src = "../../images/bg_" + Math.floor(Math.random() * 3) + ".png";}, 50);
+bgLrg.onload = () => {bgLrg.style.visibility = "visible"};
 
 const navbar = document.getElementById("navbar");
 
@@ -28,64 +28,64 @@ if (eid == undefined) {
 }
 
 let userdata;
-
-postRequest("oauth/uid/", {
-    uid: localStorage.getItem("userid"),
-}, (res) => {
-    if (res.success) {
-        userdata = res.userdata;
-    } else {
-        disableUnload = true;
-        window.location.replace("https://www.emberfallevents.com/applications/");
-    }
-});
-
 let eventdata;
 let eventappdata;
 let userappdata;
 
-postRequest("events/data/", {
-    id : eid
-}, (res) => {
-    if (res.success) {
-        const closed = res.data.closetime < Date.now();
-        if (closed) {
+setTimeout(() => {
+    postRequest("oauth/uid/", {
+        uid: localStorage.getItem("userid"),
+    }, (res) => {
+        if (res.success) {
+            userdata = res.userdata;
+
+            postRequest("events/data/", {
+                id : eid
+            }, (res) => {
+                if (res.success) {
+                    eventdata = res.data;
+                    const closed = eventdata.closetime < Date.now();
+                    if (closed) {
+                        disableUnload = true;
+                        window.location.replace("https://www.emberfallevents.com/applications/");
+                    }
+                    document.getElementById("title").innerHTML = eventdata.name;
+                    postRequest("events/appdata/", {
+                        id : eid
+                    }, (res) => {
+                        if (res.success) {
+                            eventappdata = res.data;
+                            if (userdata.applications.event[eid]) {
+                                postRequest("events/app/", {
+                                    app: userdata.applications.event[eid]
+                                }, (res) => {
+                                    userappdata = res.data;
+                                    setupPage();
+                                    if (res.success) {
+                                        loadUserData();
+                                    }
+                                    document.getElementById("questionContainer").style.visibility = "visible";
+                                });
+                            } else {
+                                setupPage();
+                                document.getElementById("questionContainer").style.visibility = "visible";
+                            }
+                        } else {
+                            disableUnload = true;
+                            window.location.replace("https://www.emberfallevents.com/applications/");
+                        }
+                    });
+                } else {
+                    disableUnload = true;
+                    window.location.replace("https://www.emberfallevents.com/applications/");
+                }
+            });
+        } else {
             disableUnload = true;
             window.location.replace("https://www.emberfallevents.com/applications/");
         }
-        eventdata = res.data;
-        document.getElementById("title").innerHTML = res.data.name;
-        postRequest("events/appdata/", {
-            id : eid
-        }, (res) => {
-            if (res.success) {
-                eventappdata = res.data;
-                if (userdata.applications.event[eid]) {
-                    postRequest("events/app/", {
-                        app: userdata.applications.event[eid],
-                        uid: localStorage.getItem("userid")
-                    }, (res) => {
-                        userappdata = res.data;
-                        setupPage();
-                        if (res.success) {
-                            loadUserData();
-                        }
-                        document.getElementById("questionContainer").style.visibility = "visible";
-                    });
-                } else {
-                    setupPage();
-                    document.getElementById("questionContainer").style.visibility = "visible";
-                }
-            } else {
-                disableUnload = true;
-                window.location.replace("https://www.emberfallevents.com/applications/");
-            }
-        });
-    } else {
-        disableUnload = true;
-        window.location.replace("https://www.emberfallevents.com/applications/");
-    }
-});
+    });
+}, 100);
 
 function loadUserData() {
     const ign = userappdata.ign;

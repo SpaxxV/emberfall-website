@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../style.css?r=7"/>
+    <link rel="stylesheet" href="../../style.css?r=9"/>
     <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" sizes="128x128">
     <title>Emberfall Events - Apply</title>
   </head>
@@ -24,12 +24,12 @@
         <li><a href="https://emberfallevents.com/#support" class="nav-link">Support Us</a></li>
         <li><a href="https://emberfallevents.com/#staff" class="nav-link">Staff</a></li>
       </ul>
-      <a href="https://discord.gg/emberfallevents" target="_blank" class="nav-cta">Join Server</a>
+      <a href="https://discord.gg/emberfallevents" target="_blank" class="nav-cta" style="visibility: hidden;">Join Server</a>
     </nav>
 
     <section class="landing" id="landing">
       <div class="landing-bg" id="landingBg">
-        <img src="" style="height: 100vh; width: 100%; min-height: 100%; min-width: 1920px;" id="landingBgIMG" hidden/>
+        <img src="" style="height: 100vh; width: 100%; min-height: 100%; min-width: 1920px; visibility: hidden;" id="landingBgIMG"/>
       </div>
       <div class="landing-overlay"></div>
       <div class="landing-content" id="landingContent">
@@ -54,7 +54,6 @@
                     <h4 class="apply-title">What is your Minecraft username?</h4>
                     <p class="apply-desc">You must have a paid Minecraft: Java Edition account to apply.</p>
                     <input type="text" id="ign" class="input apply-short" placeholder="Minecraft IGN..." onchange="checkMCName()"></input>
-                    <span style="position: relative; top: -10px;" id="error"></span>
                 </div>
             </div>
         </div>
@@ -99,6 +98,6 @@
     </footer>
   </body>
 
-  <script src="../../global/network.js?r=7"></script>
-  <script src="script.js?r=7"></script>
+  <script src="../../global/network.js?r=8"></script>
+  <script src="script.js?r=8"></script>
 </html>

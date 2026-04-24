@@ -1,6 +1,6 @@
 const bgLrg = document.getElementById("landingBgIMG");
-bgLrg.src = "./images/bg_" + Math.floor(Math.random() * 3) + ".png";
-bgLrg.onload = () => {bgLrg.hidden = false};
+setTimeout(() => {bgLrg.src = "./images/bg_" + Math.floor(Math.random() * 3) + ".png";}, 50);
+bgLrg.onload = () => {bgLrg.style.visibility = "visible"};
 
 const navbar = document.getElementById("navbar");
 
