@@ -187,7 +187,7 @@ function submit() {
     }, (res) => {
         if (res.success) {
             disableUnload = true;
-            window.location.replace("https://www.emberfallevents.com/applications/");
+            window.location.assign("https://www.emberfallevents.com/applications/");
         }
     });
 }

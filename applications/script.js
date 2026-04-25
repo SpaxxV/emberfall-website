@@ -21,9 +21,9 @@ let userData = {};
 
 function applyForEvent(eid) {
     if (userVerified) {
-        window.location.replace("https://www.emberfallevents.com/applications/apply/?id=" + eid);
+        window.location.assign("https://www.emberfallevents.com/applications/apply/?id=" + eid);
     } else {
-        window.location.replace("https://discord.com/oauth2/authorize?client_id=1493641488431710238&response_type=code&redirect_uri=https%3A%2F%2Femberfallevents.com%2Fapplications%2F&scope=identify+guilds.members.read&state=" + eid);
+        window.location.assign("https://discord.com/oauth2/authorize?client_id=1493641488431710238&response_type=code&redirect_uri=https%3A%2F%2Femberfallevents.com%2Fapplications%2F&scope=identify+guilds.members.read&state=" + eid);
     }
 }
 
@@ -85,7 +85,7 @@ function showEvent(id) {
 }
 
 function viewEvent(id) {
-    window.location.replace("https://www.emberfallevents.com/applications/view/?id=" + userData.applications.event[id]);
+    window.location.assign("https://www.emberfallevents.com/applications/view/?id=" + userData.applications.event[id]);
 }
 
 async function loadEvents() {
