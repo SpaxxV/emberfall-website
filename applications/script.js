@@ -103,7 +103,7 @@ async function loadEvents() {
                         const applied = userData.applications != undefined && userData.applications.event[eid] != undefined;
                         if (!res.data.total) res.data.total = 0;
                         eloaddata[i] = 0;
-                        document.getElementById("eventlist").innerHTML  += `<div class="listinga">
+                        document.getElementById("eventlist").innerHTML += `<div class="listinga">
                             <img src="../images/loading.gif" style="position: relative; width: 300px; height: 400px; top: -50px; left: 50px;" id="loade` + i + `">
                             <div style="position: absolute; display: none;" id="contente` + i + `">
                                 <div class="listing-bg"> 

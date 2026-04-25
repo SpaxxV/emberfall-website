@@ -31,6 +31,8 @@ let userdata;
 let eventdata;
 let eventappdata;
 let userappdata;
+let key;
+if (localStorage.getItem("key")) key = localStorage.getItem("key");
 
 setTimeout(() => {
     postRequest("oauth/uid/", {
@@ -38,9 +40,9 @@ setTimeout(() => {
     }, (res) => {
         if (res.success) {
             userdata = res.userdata;
-
             postRequest("events/data/", {
-                id : eid
+                id : eid,
+                key : key
             }, (res) => {
                 if (res.success) {
                     eventdata = res.data;
@@ -51,7 +53,8 @@ setTimeout(() => {
                     }
                     document.getElementById("title").innerHTML = eventdata.name;
                     postRequest("events/appdata/", {
-                        id : eid
+                        id : eid,
+                        key : key
                     }, (res) => {
                         if (res.success) {
                             eventappdata = res.data;
@@ -92,14 +95,32 @@ function loadUserData() {
     document.getElementById("ign").value = ign;
     for (let i = 0; i < eventappdata.length; i++) {
         const ans = userappdata.answers[i];
-        document.getElementById("q" + i + "-content").value = ans;
+        const q = eventappdata[i];
+        const qid = "q" + i + "-content";
+        if (q.type == "yesno" || q.type == "multi") {
+            const elem = document.getElementById(qid + "-" + ans);
+            if (elem != undefined) document.getElementById(qid + "-" + ans).checked = true;
+        } else {
+            document.getElementById(qid).value = ans;
+        }
     }
 }
 
+function validateRange(id, min, max) {
+    if (document.getElementById(id).value == "") return;
+    let value = parseInt(document.getElementById(id).value);
+    if (value == NaN) {
+        value = min;
+    }
+    value = Math.max(min, Math.min(max, value));
+    document.getElementById(id).value = value;
+}
+
 function setupPage() {
-    console.log(eventappdata);
     for (let i = 0; i < eventappdata.length; i++) {
         const q = eventappdata[i];
+        let qdat = [];
+        if (q.data) qdat = q.data.split("\n");
         let str = 
         `<div class="apply-section">
             <h4 class="apply-title">` + q.title + `</h4>
@@ -112,6 +133,26 @@ function setupPage() {
             case "long":
                 str +=
                 `<textarea type="text" id="q` + i + `-content" class="input apply-long" placeholder="Long Answer..."></textarea>`;
+                break;
+            case "yesno":
+                str +=
+                    `<input type="radio" id="q` + i + `-content-yes" name="q` + i + `" class="radio-button" value="yes"></input>
+                    <label for="q` + i + `-content-yes" class="radio-label">Yes</label><br>
+                    <input type="radio" id="q` + i + `-content-no" name="q` + i + `" class="radio-button" value="no"></input>
+                    <label for="q` + i + `-content-no" class="radio-label">No</label>`;
+                break;
+            case "multi":
+                for (let n = 0; n < qdat.length; n++) {
+                    str +=
+                        `<input type="radio" id="q` + i + `-content-` + n + `" name="q` + i + `" class="radio-button" value="` + n + `"></input>
+                        <label for="q` + i + `-content-` + n + `" class="radio-label">` + qdat[n] + `</label>`;
+                    if (n + 1 != qdat.length) str += `<br>`;
+                }
+                break;
+            case "range":
+                if (qdat.length < 2) break;
+                    str +=
+                    `<input type="number" id="q` + i + `-content" class="input apply-range" min="` + qdat[0] + `" max="` + qdat[1] + `" placeholder="Number ` + qdat[0] + `-` + qdat[1] + `" onchange="validateRange('q` + i + `-content', ` + qdat[0] + `, ` + qdat[1] + `);"></input>`;
                 break;
             default:
                 console.error("Unhandled question type! " + q.type);
@@ -129,7 +170,13 @@ function setupPage() {
 function submit() {
     const answers = [];
     for (let i = 0; i < eventappdata.length; i++) {
-        answers[i] = document.getElementById("q" + i + "-content").value;
+        const q = eventappdata[i];
+        if (q.type == "yesno" || q.type == "multi") {
+            const rad = document.querySelector("input[name=q" + i + "]:checked");
+            answers[i] = ((rad == undefined) ? "" : rad.value);
+        } else {
+            answers[i] = document.getElementById("q" + i + "-content").value;
+        }
     }
     const ign = document.getElementById("ign").value;
     postRequest("events/submit/", {
