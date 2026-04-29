@@ -3,20 +3,25 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="Emberfall Events - Applications" property="og:title"/>
+    <meta content="Emberfall is an up-and-coming Minecraft civilization event server, established September 2025 and reaching 1000+ members after only 5 months!" property="og:description"/>
+    <meta content="https://emberfallevents.com/applications/" property="og:url"/>
+    <meta content="https://emberfallevents.com/images/logo.png" property="og:image"/>
+    <meta content="#f4640a" data-react-helmet="true" name="theme-color"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../style.css?r=11"/>
+    <link rel="stylesheet" href="../style.css?r=111"/>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico?r=7" sizes="128x128">
     <title>Emberfall Events - Applications</title>
   </head>
   <body>
     <nav class="navbar" id="navbar">
       <a href="https://emberfallevents.com/" class="nav-logo">
-        <div class="nav-logo-mark">
-          <img src="../images/logo.png" alt="" style="width:32px; height:25px; margin-top:4px;"/>
-        </div>
-        EMBERFALL
+        <!-- <div class="nav-logo-mark">
+          <img src="../images/logo.png" alt="" style="width:64px; height:50px; max-width: 64px; left: -16px; top: -8px; position: absolute;"/>
+        </div> -->
+        Emberfall
       </a>
       <ul class="nav-links nav-r">
         <li><a href="https://emberfallevents.com/applications/" class="nav-link">Events</a></li>
@@ -33,7 +38,7 @@
       </div>
       <div class="landing-overlay"></div>
       <div class="landing-content" id="landingContent">
-        <h1 class="landing-title">APPLICATIONS</h1>
+        <h1 class="landing-title" id="landingTitle">APPLICATIONS</h1>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;text-shadow:none;">
           <a href="https://discord.com/oauth2/authorize?client_id=1493641488431710238&response_type=code&redirect_uri=https%3A%2F%2Femberfallevents.com%2Fapplications%2F&scope=identify+guilds.members.read" target="_blank" class="btn-primary" id="login">
             Sign in with Discord
@@ -92,5 +97,5 @@
   </body>
 
   <script src="../global/network.js?r=7"></script>
-  <script src="script.js?r=10"></script>
+  <script src="script.js?r=110"></script>
 </html>

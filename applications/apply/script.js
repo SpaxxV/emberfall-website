@@ -31,8 +31,6 @@ let userdata;
 let eventdata;
 let eventappdata;
 let userappdata;
-let key;
-if (localStorage.getItem("key")) key = localStorage.getItem("key");
 
 setTimeout(() => {
     postRequest("oauth/uid/", {
@@ -41,8 +39,7 @@ setTimeout(() => {
         if (res.success) {
             userdata = res.userdata;
             postRequest("events/data/", {
-                id : eid,
-                key : key
+                id : eid
             }, (res) => {
                 if (res.success) {
                     eventdata = res.data;
@@ -53,8 +50,7 @@ setTimeout(() => {
                     }
                     document.getElementById("title").innerHTML = eventdata.name;
                     postRequest("events/appdata/", {
-                        id : eid,
-                        key : key
+                        id : eid
                     }, (res) => {
                         if (res.success) {
                             eventappdata = res.data;

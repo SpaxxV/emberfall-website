@@ -8,8 +8,6 @@ if (aid == undefined) {
 let userdata;
 let eventappdata;
 let userappdata;
-let key;
-if (localStorage.getItem("key")) key = localStorage.getItem("key");
 
 setTimeout(() => {
     postRequest("events/app/", {
@@ -19,8 +17,7 @@ setTimeout(() => {
         if (res.success) {
             if (res.success) {
                 postRequest("events/appdata/", {
-                    id : userappdata.event,
-                    key : key
+                    id : userappdata.event
                 }, (res) => {
                     if (res.success) {
                         eventappdata = res.data;

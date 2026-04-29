@@ -14,7 +14,17 @@ window.addEventListener("scroll", onScroll, { passive: true });
 
 const querystring = new URLSearchParams(window.location.search);
 const code = querystring.get("code");
-const state = querystring.get("state");
+let state = querystring.get("state");
+let rel = querystring.get("rel");
+if (state != undefined && state.startsWith("z")) {
+    rel = "staff";
+    state = undefined;
+}
+
+if (rel == "staff") {
+    document.getElementById("login").href = "https://discord.com/oauth2/authorize?client_id=1493641488431710238&response_type=code&redirect_uri=https%3A%2F%2Femberfallevents.com%2Fapplications%2F&scope=identify+guilds.members.read&state=z" + Date.now();
+    document.getElementById("landingTitle").innerHTML = "Staff Applications";
+}
 
 let userVerified = false;
 let userData = {};
@@ -75,13 +85,9 @@ if (localStorage.getItem("userid")) {
     oauthdo();
 }
 
-const eloaddata = [];
 function showEvent(id) {
-    eloaddata[id]++;
-    if (eloaddata[id] == 2) {
-        document.getElementById("loade" + id).style.display = "none";
-        document.getElementById("contente" + id).style.display = "block";
-    }
+    document.getElementById("loade" + id).style.display = "none";
+    document.getElementById("contente" + id).style.display = "block";
 }
 
 function viewEvent(id) {
@@ -91,7 +97,8 @@ function viewEvent(id) {
 async function loadEvents() {
     postRequest("events/list/", {}, async (res) => {
         if (res.success) {
-            const events = res.data;
+            let events = res.data;
+            if (rel == "staff") events = ["632354dcf523b77f","cf7f9e21266e0828","9ded99439b5cbd84"];
             let str = ``;
             for (let i = 0; i < events.length; i++) {
                 let eid = events[i];
@@ -102,7 +109,6 @@ async function loadEvents() {
                         const closed = res.data.closetime < Date.now();
                         const applied = userData.applications != undefined && userData.applications.event[eid] != undefined;
                         if (!res.data.total) res.data.total = 0;
-                        eloaddata[i] = 0;
                         document.getElementById("eventlist").innerHTML += `<div class="listinga">
                             <img src="../images/loading.gif" style="position: relative; width: 300px; height: 400px; top: -50px; left: 50px;" id="loade` + i + `">
                             <div style="position: absolute; display: none;" id="contente` + i + `">
@@ -110,11 +116,8 @@ async function loadEvents() {
                                     <img src="` + res.data.background43 + `" style="width: 100%; height: 100%; visibility: ` + ((res.data.background43 == "") ? "hidden" : "visible") + `;" onload="showEvent(` + i + `);" onerror="showEvent(` + i + `);"/>
                                 </div>
                                 <div class="listing-overlay"></div>
-                                <div class="listing-icon">
-                                    <img src="` + res.data.logo + `" alt="" style="width: 40px; height: 32px; margin-top: 5px; visibility: ` + ((res.data.background43 == "") ? "hidden" : "visible") + `;" onload="showEvent(` + i + `);" onerror="showEvent(` + i + `);"/>
-                                </div>
                                 <h4 class="listing-title">` + res.data.name + `</h4>
-                                <p class="listing-stats">` + new Date(res.data.closetime).toLocaleString() + ` | ` + res.data.total + ` Application` + ((res.data.total != 1) ? "s" : "") + `</p>
+                                <p class="listing-stats">` + ((rel == "staff") ? `[Staff App]` : new Date(res.data.closetime).toLocaleString() + ` | ` + res.data.total + ` Application` + ((res.data.total != 1) ? "s" : "")) + `</p>
                                 <p class="listing-description">` + res.data.description + `</p>
                                 <button class="`+ ((closed) ? "btn-ghost" : "btn-primary") + ` listing-button" ` + ((closed) ? ((applied) ? "onclick=\"viewEvent('" + eid + "')\"" : "disabled") : "onclick=\"applyForEvent('" + eid + "')\"") + `>
                                     ` + ((applied) ? ((closed) ? "View Application" : "Edit Application") : ((closed) ? "Applications Closed" : "Apply Now!")) + `

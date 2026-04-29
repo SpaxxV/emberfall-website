@@ -45,7 +45,7 @@ textarea {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 0 2.5rem;
+    padding: 0 25px;
     height: 68px;
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@ textarea {
     position: relative;
     top: 1px;
     font-family: "Bebas Neue", sans-serif;
-    font-size: 1.7rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     letter-spacing: 0.12em;
     color: var(--white);
     display: flex;
@@ -81,10 +81,10 @@ textarea {
 
 .nav-logo-mark {
     position: relative;
-    top: -1px;
-    width: 32px;
+    top: -2px;
+    width: 40px;
     height: 32px;
-    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dim) 100%);
+    /* background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dim) 100%); */
     border-radius: 8px;
 }
 
@@ -698,6 +698,11 @@ section {
     color: var(--muted);
 }
 
+.staff-footer {
+    display: flex;
+    margin-top: 25px;
+}
+
 .divider {
     height: 1px;
     background: linear-gradient(to right, transparent, var(--border), transparent);
@@ -958,7 +963,7 @@ section {
     top: -2px;
     left: -2px;
 }
-.listing-icon {
+/* .listing-icon {
     background-color: var(--orange);
     border-radius: 10px;
     position: absolute;
@@ -966,7 +971,7 @@ section {
     height: 40px;
     top: 120px;
     left: 8px;
-}
+} */
 .listing-title {
     position: absolute;
     color: var(--white);
@@ -976,7 +981,7 @@ section {
     width: 380px;
     height: 40px;
     top: 115px;
-    left: 58px;
+    left: 8px;
 }
 .listing-stats {
     position: absolute;
