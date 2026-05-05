@@ -1,6 +1,6 @@
 const params = new URLSearchParams();
 const querystring = new URLSearchParams(window.location.search).toString();
-let target = "modview/event/"
+let target = "modview/review/"
 if (querystring.length > 0) target += "?" + querystring;
 params.append("r", target);
 
