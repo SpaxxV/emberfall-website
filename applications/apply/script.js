@@ -178,6 +178,7 @@ function setupPage() {
         <button class="btn-primary" onclick="submit();">Submit Application</button>
         <button class="btn-ghost" onclick="submit();">Save Draft</button>
         <p class="apply-desc" style="color: var(--muted); font-size: 0.7rem; margin-top: 5px;">You are able to come back and edit your application after submitting it.</p>
+        <p class="apply-desc" style="color: red; font-size: 0.7rem; position: relative; top: -10px;" id="applyError"></p>
     </div>`;
 }
 
@@ -193,17 +194,37 @@ function submit() {
         }
     }
     const ign = document.getElementById("ign").value;
-    postRequest("events/submit/", {
-        uid: localStorage.getItem("userid"),
-        id: eid,
-        answers: answers,
-        ign: ign
-    }, (res) => {
-        if (res.success) {
-            disableUnload = true;
-            window.location.assign("https://www.emberfallevents.com/applications/");
+    const unanswered = [];
+    if (ign == "") {
+        unanswered.push("ign");
+    }
+    for (let i = 0; i < answers.length; i++) {
+        if (answers[i] == "") {
+            unanswered.push(i);
         }
-    });
+    }
+    if (unanswered.length == 0) {
+        postRequest("events/submit/", {
+            uid: localStorage.getItem("userid"),
+            id: eid,
+            answers: answers,
+            ign: ign
+        }, (res) => {
+            if (res.success) {
+                disableUnload = true;
+                window.location.assign("https://www.emberfallevents.com/applications/");
+            }
+        });
+    } else {
+        for (let i = 0; i < unanswered.length; i++) {
+            if (unanswered[i] == "ign") {
+                unanswered[i] = "What is your Minecraft username?";
+            } else {
+                unanswered[i] = eventappdata[unanswered[i]].title;
+            }
+        }
+        document.getElementById("applyError").innerHTML = "Please answer the following unanswered questions:<br>" + unanswered.join("<br>");
+    }
 }
 
 function autosave() {
