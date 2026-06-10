@@ -98,7 +98,7 @@ async function loadEvents() {
     postRequest("events/list/", {}, async (res) => {
         if (res.success) {
             let events = res.data;
-            if (rel == "staff") events = ["cf735c7d64a17116","632354dcf523b77f","cf7f9e21266e0828"];
+            if (rel == "staff") events = ["176ef3b9756b1bd4","3c50c23d7131de0f","532a4597d96838dd","20aa26af5432664a","b0e1bd1f55895e5d","29ebd9bb717804a0","90f59f482efbf9ae","ce234e6d17c53010"];
             let str = ``;
             for (let i = 0; i < events.length; i++) {
                 let eid = events[i];
