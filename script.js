@@ -1,5 +1,5 @@
 const bgLrg = document.getElementById("landingBgIMG");
-setTimeout(() => {bgLrg.src = "./images/bg_" + Math.floor(Math.random() * 5) + ".png";}, 50);
+setTimeout(() => {bgLrg.src = "./images/bg_" + Math.floor(Math.random() * 19) + ".png";}, 50);
 bgLrg.onload = () => {bgLrg.style.visibility = "visible"};
 
 const navbar = document.getElementById("navbar");
