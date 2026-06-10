@@ -20,6 +20,8 @@ window.addEventListener("beforeunload", (e) => {
     }
 });
 
+let canCache = false;
+
 const querystring = new URLSearchParams(window.location.search);
 const eid = querystring.get("id");
 if (eid == undefined) {
@@ -27,6 +29,7 @@ if (eid == undefined) {
     window.location.replace("https://www.emberfallevents.com/applications/");
 }
 
+const localuserappdata = localStorage.getItem("app" + eid);
 let userdata;
 let eventdata;
 let eventappdata;
@@ -60,14 +63,20 @@ setTimeout(() => {
                                 }, (res) => {
                                     userappdata = res.data;
                                     setupPage();
-                                    if (res.success) {
+                                    if (res.success || localuserappdata) {
                                         loadUserData();
                                     }
                                     document.getElementById("questionContainer").style.visibility = "visible";
+                                    canCache = true;
                                 });
                             } else {
                                 setupPage();
+                                
+                                if (localuserappdata) {
+                                    loadUserData();
+                                }
                                 document.getElementById("questionContainer").style.visibility = "visible";
+                                canCache = true;
                             }
                         } else {
                             disableUnload = true;
@@ -87,6 +96,14 @@ setTimeout(() => {
 }, 100);
 
 function loadUserData() {
+    if (localuserappdata) {
+        let luad = JSON.parse(localuserappdata);
+        if (userappdata) {
+            if (luad.lastEdited > userappdata.lastEdited) userappdata = luad;
+        } else {
+            userappdata = luad;
+        }
+    }
     const ign = userappdata.ign;
     document.getElementById("ign").value = ign;
     for (let i = 0; i < eventappdata.length; i++) {
@@ -159,6 +176,7 @@ function setupPage() {
     document.getElementById("questionContainer").innerHTML += 
     `<div class="apply-section">
         <button class="btn-primary" onclick="submit();">Submit Application</button>
+        <button class="btn-ghost" onclick="submit();">Save Draft</button>
         <p class="apply-desc" style="color: var(--muted); font-size: 0.7rem; margin-top: 5px;">You are able to come back and edit your application after submitting it.</p>
     </div>`;
 }
@@ -187,3 +205,35 @@ function submit() {
         }
     });
 }
+
+function autosave() {
+    const answers = [];
+    for (let i = 0; i < eventappdata.length; i++) {
+        const q = eventappdata[i];
+        if (q.type == "yesno" || q.type == "multi") {
+            const rad = document.querySelector("input[name=q" + i + "]:checked");
+            answers[i] = ((rad == undefined) ? "" : rad.value);
+        } else {
+            answers[i] = document.getElementById("q" + i + "-content").value;
+        }
+    }
+    const ign = document.getElementById("ign").value;
+    const time = Date.now();
+    localStorage.setItem("app" + eid, JSON.stringify({
+        ign: ign,
+        answers: answers,
+        lastEdited: time
+    }))
+}
+
+function savedraft() {
+    autosave();
+    disableUnload = true;
+    window.location.assign("https://www.emberfallevents.com/applications/");
+}
+
+setInterval(() => {
+    if (canCache) {
+        autosave();
+    }
+}, 5000);
