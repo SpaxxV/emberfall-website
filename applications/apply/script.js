@@ -176,7 +176,7 @@ function setupPage() {
     document.getElementById("questionContainer").innerHTML += 
     `<div class="apply-section">
         <button class="btn-primary" onclick="submit();">Submit Application</button>
-        <button class="btn-ghost" onclick="submit();">Save Draft</button>
+        <button class="btn-ghost" onclick="savedraft();">Save Draft</button>
         <p class="apply-desc" style="color: var(--muted); font-size: 0.7rem; margin-top: 5px;">You are able to come back and edit your application after submitting it.</p>
         <p class="apply-desc" style="color: red; font-size: 0.7rem; position: relative; top: -10px;" id="applyError"></p>
     </div>`;
