@@ -73,7 +73,7 @@ setInterval(() => {
     }, 1000);
 }, 5000);
 
-externalGetRequest("https://discord.com/api/v10/invites/emberfallevents?with_counts=true&with_expiration=true", (res) => {
+externalGetRequest("https://discord.com/api/v10/invites/8446kQEu73?with_counts=true&with_expiration=true", (res) => {
     if (res.approximate_member_count) {
         document.getElementById("online-count").innerHTML = res.approximate_presence_count + " Online";
         document.getElementById("member-count").innerHTML = res.approximate_member_count + " Members";
