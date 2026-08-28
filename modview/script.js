@@ -4,8 +4,8 @@ params.append("r", "modview/");
 if (!localStorage.getItem("key")) {
     window.location.replace("https://www.emberfallevents.com/modview/login/?" + params.toString());
 } else {
-    postRequest("modview/keystatus/", {
-        key: localStorage.getItem("key"),
+    postRequest("modview/v2/keystatus/", {
+        hash: localStorage.getItem("key"),
     }, (res) => {
         if (!res.success) {
             window.location.replace("https://www.emberfallevents.com/modview/login/?" + params.toString());
